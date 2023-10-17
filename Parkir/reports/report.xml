@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<odoo>
+        <record id="report_parkir_card_xls" model="ir.actions.report">
+                <field name='name'>Parkir Card Excel</field>
+                <field name="model">parkir.kendaraan</field>
+                <field name="report_type">xlsx</field>
+                <field name="report_name">parkir.report_parkir_xls</field>
+                <field name="report_file">parkir.report_parkir_xls</field>
+                <field name="binding_model_id" ref="model_parkir_kendaraan"/>
+                <field name="binding_type">report</field>
+        </record>
+
+        <record id="paperformat_laundry_order" model="report.paperformat">
+            <field name="name">Paper Format Custom Order</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">80</field>
+            <field name="page_width">80</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">1</field>
+            <field name="margin_bottom">3</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">3</field>
+            <field name="dpi">80</field>
+        </record>
+
+    
+    
+    <report
+        id ="report_parkir_card"
+        model="parkir.kendaraan"
+        string="Parkir Card"
+
+        report_type = "qweb-pdf"
+        menu="True"
+
+        name="Parkir.report_parkir"
+        file="Parkir.report_parkir"
+        />
+
+        
+
+        
+</odoo>

@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="kendaraan_view_form" model="ir.ui.view">
+        <field name="name">kendaraan_view_form</field>
+        <field name="model">parkir.kendaraan</field>
+        <field name="arch" type="xml">
+
+            <form string="Parkir">
+                <header>
+
+                    <button name="%(Parkir.create_parkir_wizard)d"
+                        type="object"
+                        class="oe_highlight"
+                        string="Create Parkir"/>
+
+                    <button name="update_form_to_in_progress"
+                        type="object"
+                        class="oe_highlight"
+                        string="Di Dalam Parkiran"/>
+
+                    <button name="update_form_to_in_finish"
+                        type="object"
+                        class="oe_highlight"
+                        string="Meninggalkan Parkiran"/>
+
+                    <field name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,in_parkiran,out_parkiran"/>
+
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name_seq" readonly="1"/>
+                        </h1>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                    </div>
+
+                    <group>
+                        <group string="Input Kendaraan">
+                            <field name="parkir_nomor"/>
+                            <field name="parkiran_roda"/>
+                            <field name="roda_group"/>
+                            <!-- <button
+                                name =""
+                                type="action"
+                                class=""
+                                string="Geser"
+
+                            /> -->
+                        </group>
+                        <group string="Input Tanggal IN Dan OUT">
+                            <field name="parkir_date_in"/>
+                            <field name="parkir_date_out"/>
+                            <field name="parkir_nominal"/>
+                        </group>
+
+                        <group string="Input Lokasi Parkir">
+                            <field name="parkir_lock"/>
+                            
+
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="parkir_kendaraan_search">
+        <field name="name">parkir.kendaraan.search</field>
+        <field name="model">parkir.kendaraan</field>
+        <field name="arch" type="xml">
+            <search string="Search Plat Nomor">
+                <field name="parkir_nomor" filter_domain="['|',('parkir_nomor', 'ilike',
+                self), ('name_seq', 'ilike', self)]"/>
+            <field name="name_seq"/>
+            <!-- <separator />
+                <filter string="Sepeda Motor" name='sepeda_motor' domain="[('roda_group','=','sepeda_motor')]"/>
+                <filter string="Mobil" name='mobil' domain="[('roda_group','=','mobil')]"/> -->
+                <!-- <group string="Group By">
+                    <filter string="Jenis Kendaraan" name="roda_group" context="{'group_by': 'roda_group'}"/>
+                </group> -->
+            </search>
+        </field>
+    </record>
+
+     <!-- <record model="ir.ui.view" id="parkir_in_search">
+        <field name="name">parkir.in.search</field>
+        <field name="model">parkir.kendaraan</field>
+        <field name="arch" type="xml">
+            <search string="Search Tanggal Masuk">
+                <field name="parkir_date_in" filter_domain="['|',('parkir_date_in', 'ilike',
+                self), ('name_seq', 'ilike', self)]"/>
+            <field name="name_seq"/>
+            </search>
+        </field>
+    </record> -->
+
+
+    <record id="parkir_kendaraan_tree" model="ir.ui.view">
+        <field name="name">parkir_kendaraan_view_tree</field>
+        <field name="model">parkir.kendaraan</field>
+        <field name="arch" type="xml">
+            <tree string="Parkir">
+                <field name="name_seq"/>
+                <field name="parkir_nomor"/>
+                <field name="parkiran_roda"/>
+                <field name="roda_group"/>
+                <field name="parkir_lock"/>
+                <field name="parkir_date_in"/>
+                <field name="parkir_date_out"/>
+                <field name="parkir_nominal"/>
+                <field name="state"/>
+                <field name="image" widget="image" class="oe_avatar"/>
+            </tree>
+        </field>
+    </record>
+
+    
+    
+    <record id="action_kendaraan" model="ir.actions.act_window">
+        <field name="name">Parkir</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">parkir.kendaraan</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class ="o_view_nocontent_smilling_face">
+                Creat first Parkir !
+
+            </p>
+        </field>
+    </record>
+    <menuitem id="parkir_root" name="Parkir"/>
+    <!-- <menuitem
+        id="parkir_kendaraan"
+        name="Parkir"
+        parent="parkir_root"
+        sequence="2"
+        action="action_kendaraan"
+        /> -->
+
+     <menuitem
+        id="parkir_kendaraan"
+        name="Parkir"
+        parent="parkir_root"
+        sequence="2"
+        action="action_kendaraan"
+        />
+
+
+
+</odoo>
